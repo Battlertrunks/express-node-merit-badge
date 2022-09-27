@@ -67,6 +67,7 @@ app.get('/books', (req, res) => {
 
 });
 
+// Gets specific book via ID.
 app.get('/books/:id', (req, res) => {
     const id = req.params.id;
     
@@ -78,6 +79,7 @@ app.get('/books/:id', (req, res) => {
     }
 })
 
+// Create a book.
 app.post('/books', (req, res) => {
     const newBook = req.body;
 
@@ -89,6 +91,7 @@ app.post('/books', (req, res) => {
     createNewBook(newBook, obj, res);
 });
 
+// update a book or if id is not found creates one.
 app.put('/books/:id', (req, res) => {
     const id = req.params.id;
     const updatedBook = req.body;
@@ -115,6 +118,7 @@ app.put('/books/:id', (req, res) => {
     }
 });
 
+// Delete a book.
 app.delete('/books/:id', (req, res) => {
     const id = req.params.id;
 
