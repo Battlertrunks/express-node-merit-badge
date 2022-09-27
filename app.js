@@ -1,9 +1,11 @@
 import express from "express";
 import fs from 'fs';
 
+// Initializing express
 const app = express();
 const port = 3000;
 
+// To work with JSON with the body
 app.use(express.json());
 
 /**
@@ -134,7 +136,3 @@ app.delete('/books/:id', (req, res) => {
         res.sendStatus(404);
     }
 });
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-})
