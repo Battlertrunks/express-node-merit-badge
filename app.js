@@ -1,6 +1,7 @@
 import express from "express";
 import fs from 'fs';
 
+// Initializing the express app.
 const app = express();
 const port = 3000;
 
@@ -134,7 +135,3 @@ app.delete('/books/:id', (req, res) => {
         res.sendStatus(404);
     }
 });
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-})
