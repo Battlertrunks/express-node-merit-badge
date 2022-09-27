@@ -5,6 +5,7 @@ import fs from 'fs';
 const app = express();
 const port = 3000;
 
+// To work with JSON with the body
 app.use(express.json());
 
 /**
