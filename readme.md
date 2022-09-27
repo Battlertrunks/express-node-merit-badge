@@ -11,22 +11,22 @@ To complete this exercise you will need to create a demo node.js app that uses t
 
 ## Book API Specs
 ### Get
-- GET /books with no parameters
+- GET /books with no parameters -------
   - Returns a lists of all books and http response of 200
-- GET /books with a query parameter of publisher
+- GET /books with a query parameter of publisher ------
   - Returns a list of all books with that publisher and HTTP response of 200
   - If there are no books found with that parameter an empty array is returned
-- GET /books/:ID
+- GET /books/:ID ------
   - Returns the book with that ID and HTTP Response of 200
   - If there is no book with that ID it returns an HTTP response of 404
 
 ### Post
-- POST /books/
+- POST /books/ ------
   - Creates a new book with a new ID Returns the new book with a HTTP response of 201
   - If the JSON contains an ID return a 400
   
 ### Put
-- PUT /books/:ID
+- PUT /books/:ID ------
   - If the book does not exists create it with the given ID and Return a HTTP status code of 201
   - If the book does exist update/replace it with the new one in the body and Return a HTTP Status code of 204
   
