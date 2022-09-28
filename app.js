@@ -48,7 +48,7 @@ const createNewBook = (newBook, currentBooks, res) => {
     currentBooks.books.push(newBook);
  
     writeToFile(currentBooks);
-    res.status(201).send(currentBooks.books);
+    res.status(201).send(newBook);
 }
 
 app.get('/helloworld', (req, res) => {
@@ -103,7 +103,7 @@ app.put('/books/:id', (req, res) => {
         return book.id.toString() === id;
     });
     
-    if (bookFound === -1) {
+    if (!bookFound) {
         createNewBook(updatedBook, obj, res);
     } else {
         obj.books.splice(i, 1, updatedBook);
