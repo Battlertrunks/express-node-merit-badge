@@ -58,3 +58,5 @@ To complete this exercise you will need to create a demo node.js app that uses t
   - Make sure all the tests are Checked
   - Then Click "Run Backend Merit Badge"
 - Note: make sure you run the tests against a fresh start of the API since data is added and removed by the tests
+
+- Expanding the readme because I need to do some more git stuff :)
