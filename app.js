@@ -1,9 +1,11 @@
 import express from "express";
 import fs from 'fs';
 
+// Initializing the express app.
 const app = express();
 const port = 3000;
 
+// To work with JSON with the body
 app.use(express.json());
 
 /**
@@ -19,7 +21,9 @@ const setId = () => {
  */
 let obj;
 fs.readFile('books.json', 'utf8', (err, data) => {
-    if (err) throw err;
+    if (err) {
+        throw err;
+    }
     obj = JSON.parse(data);
 });
 
@@ -48,8 +52,12 @@ const createNewBook = (newBook, currentBooks, res) => {
     currentBooks.books.push(newBook);
  
     writeToFile(currentBooks);
-    res.status(201).send(currentBooks.books);
+    res.status(201).send(newBook);
 }
+
+app.get('/helloworld', (req, res) => {
+    res.status(200).send('Hello World!');
+})
 
 /**
  * Gets all books and optional search by publisher using string params.
@@ -67,6 +75,7 @@ app.get('/books', (req, res) => {
 
 });
 
+// Gets specific book via ID.
 app.get('/books/:id', (req, res) => {
     const id = req.params.id;
     
@@ -78,6 +87,7 @@ app.get('/books/:id', (req, res) => {
     }
 })
 
+// Create a book.
 app.post('/books', (req, res) => {
     const newBook = req.body;
 
@@ -89,24 +99,18 @@ app.post('/books', (req, res) => {
     createNewBook(newBook, obj, res);
 });
 
+// update a book or if id is not found creates one.
 app.put('/books/:id', (req, res) => {
     const id = req.params.id;
     const updatedBook = req.body;
 
-    if (updatedBook.id) {
-        res.sendStatus(400);
-        return;
-    }
-    
     let i;
     const bookFound = obj.books.find((book, index) => {
         i = index;
-        return book.id.toString() === id;
+        return book.id === id;
     });
 
-    updatedBook['id'] = setId();
-    
-    if (bookFound === -1) {
+    if (!bookFound) {
         createNewBook(updatedBook, obj, res);
     } else {
         obj.books.splice(i, 1, updatedBook);
@@ -115,6 +119,7 @@ app.put('/books/:id', (req, res) => {
     }
 });
 
+// Delete a book.
 app.delete('/books/:id', (req, res) => {
     const id = req.params.id;
 
