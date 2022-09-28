@@ -99,13 +99,13 @@ app.post('/books', (req, res) => {
 app.put('/books/:id', (req, res) => {
     const id = req.params.id;
     const updatedBook = req.body;
-    
+
     let i;
     const bookFound = obj.books.find((book, index) => {
         i = index;
         return book.id === id;
     });
-    
+
     if (!bookFound) {
         createNewBook(updatedBook, obj, res);
     } else {
