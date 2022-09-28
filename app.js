@@ -51,6 +51,10 @@ const createNewBook = (newBook, currentBooks, res) => {
     res.status(201).send(currentBooks.books);
 }
 
+app.get('/helloworld', (req, res) => {
+    res.status(200).send('Hello World!');
+})
+
 /**
  * Gets all books and optional search by publisher using string params.
  */
@@ -92,19 +96,12 @@ app.post('/books', (req, res) => {
 app.put('/books/:id', (req, res) => {
     const id = req.params.id;
     const updatedBook = req.body;
-
-    if (updatedBook.id) {
-        res.sendStatus(400);
-        return;
-    }
     
     let i;
     const bookFound = obj.books.find((book, index) => {
         i = index;
         return book.id.toString() === id;
     });
-
-    updatedBook['id'] = setId();
     
     if (bookFound === -1) {
         createNewBook(updatedBook, obj, res);
