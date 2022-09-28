@@ -55,6 +55,10 @@ const createNewBook = (newBook, currentBooks, res) => {
     res.status(201).send(newBook);
 }
 
+app.get('/helloworld', (req, res) => {
+    res.status(200).send('Hello World!');
+})
+
 /**
  * Gets all books and optional search by publisher using string params.
  */
